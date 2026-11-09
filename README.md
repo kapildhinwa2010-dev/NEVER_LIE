@@ -1,6 +1,7 @@
 # 🛡️ NEVER-LIE
 
 [![CI](https://github.com/kapildhinwa2010-dev/NEVER_LIE/actions/workflows/ci.yml/badge.svg)](https://github.com/kapildhinwa2010-dev/NEVER_LIE/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/kapildhinwa2010-dev/NEVER_LIE/actions/workflows/codeql.yml/badge.svg)](https://github.com/kapildhinwa2010-dev/NEVER_LIE/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## 🎯 A memory that would rather abstain than answer wrong

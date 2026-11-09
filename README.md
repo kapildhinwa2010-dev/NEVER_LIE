@@ -23,6 +23,17 @@ Most memory systems optimize for accuracy. NEVER-LIE optimizes for a **guarantee
 "I don't know" under damage is safer than one that says something wrong
 with full confidence - and this is a **testable property**, not a vibe.
 
+## 🚀 Quick Start
+
+Requirements: Python 3.9+ and NumPy. No GPU, no model download - the whole suite runs in seconds on CPU.
+
+    git clone https://github.com/kapildhinwa2010-dev/NEVER_LIE.git
+    cd NEVER_LIE
+    pip install -e .
+
+    python never_lie.py     # run the demo
+    pytest -q               # run the bounded test suite
+
 ## 💻 Usage
 
     python never_lie.py

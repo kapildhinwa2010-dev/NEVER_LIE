@@ -39,10 +39,14 @@ class NeverLieMemory:
         slot = self.slots.get(key)
         if slot is None:
             return None
-        if digest(slot["payload"]) != slot["digest"]:
-            return None
         try:
-            return json.loads(slot["payload"])[1]
+            payload = slot["payload"]
+            expected_digest = slot["digest"]
+            if not isinstance(payload, bytes) or not isinstance(expected_digest, str):
+                return None
+            if digest(payload) != expected_digest:
+                return None
+            return json.loads(payload)[1]
         except Exception:
             return None
 
@@ -61,11 +65,17 @@ class NeverLieMemory:
 
 
 def fuzz(facts, n_corruptions, seed=0):
-    """Corrupt random slots n times and count correct / abstain / wrong reads."""
+    """Corrupt random slots n times and count correct / abstain / wrong reads.
+
+    Raises ValueError when a positive number of corruptions is requested for
+    an empty fact set, since there are no slots to corrupt.
+    """
     mem = NeverLieMemory()
     for k, v in facts.items():
         mem.put(k, v)
     keys = list(facts.keys())
+    if n_corruptions > 0 and not keys:
+        raise ValueError("cannot corrupt facts when facts is empty")
     rng = random.Random(seed)
     report = {"corruptions": n_corruptions, "correct": 0, "abstain": 0, "wrong": 0}
     for _ in range(n_corruptions):
